@@ -1,0 +1,144 @@
+/* ==================================== */
+/* style.css */
+/* Desain UI/UX oleh Role 1, Frontend Responsif oleh Role 2 */
+/* ==================================== */
+
+/* Styling Dasar */
+body {
+    font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
+    background-color: #E8F5E9; /* Primary Color: Hijau Muda */
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    color: #4CAF50; /* Accent Color: Hijau Gelap */
+    border-bottom: 2px solid #E0E0E0;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+/* --- Form & Input --- */
+.artikel-form, .filter-search {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], textarea, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #BDBDBD;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+/* Tombol Submit */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #388E3C;
+}
+
+/* --- Daftar Artikel (Read List) --- */
+.artikel {
+    padding: 15px 0;
+    border-bottom: 1px dashed #E0E0E0;
+}
+
+.artikel h3 a {
+    color: #333333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.artikel h3 a:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+/* --- Tampilan Detail Artikel (Read Detail) --- */
+.artikel-detail {
+    border: 2px solid #4CAF50 !important;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #F1F8E9;
+}
+
+/* Komentar Styling */
+.komentar-form input[type="text"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* Feedback/Error Messages */
+.error {
+    color: #D32F2F; 
+    font-weight: bold;
+    background-color: #FFEBEE;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+p[style*="green"] {
+    color: #388E3C !important;
+    font-weight: bold;
+}
+
+
+/* ==================================== */
+/* MEDIA QUERIES (RESPONSIVE) */
+/* ==================================== */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .container { padding: 15px; box-shadow: none; }
+    .filter-search form { display: flex; flex-direction: column; }
+    .filter-search label { margin-top: 10px; margin-left: 0 !important; }
+    .filter-search input[type="text"],
+    .filter-search select { width: 100%; margin-bottom: 10px; }
+    .filter-search input[type="submit"],
+    .filter-search a { display: block; width: 100%; text-align: center; margin-top: 5px; box-sizing: border-box; }
+    .komentar-form form { display: flex; flex-direction: column; }
+    .komentar-form input[type="text"] { width: 100%; margin-right: 0; margin-bottom: 5px; }
+    .artikel-detail { padding: 15px; }
+    h1 { font-size: 1.8em; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+}
