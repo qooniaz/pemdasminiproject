@@ -1,144 +1,422 @@
-/* ==================================== */
-/* style.css */
-/* Desain UI/UX oleh Role 1, Frontend Responsif oleh Role 2 */
-/* ==================================== */
 
-/* Styling Dasar */
+:root {
+    /* Colors */
+    --primary: #5a189a;       /* Deep Violet (Header, Tombol Utama) */
+    --secondary: #9d4edd;     /* Medium Purple (Aksen, Link Hover) */
+    --accent: #ffb84d;        /* Soft Orange (Aksen Kontras Sekunder) */
+    --text-dark: #2c3e50;     /* Charcoal/Navy */
+    --text-soft: #7f8c8d;     /* Soft Grey */
+    --bg-light: #f5f5f7;      /* Nearly White Background */
+    --white: #ffffff;
+
+    /* Typography */
+    --font-heading: 'Merriweather', serif; /* Font Serif untuk Judul */
+    --font-body: 'Roboto', sans-serif;    /* Font Sans-serif untuk Konten */
+
+    /* Elements */
+    --radius: 12px;
+    --shadow-base: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --max-content-width: 1400px; 
+}
+
+/* Base Reset & Typography */
 body {
-    font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
-    background-color: #E8F5E9; /* Primary Color: Hijau Muda */
-    color: #333333;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: var(--font-body);
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.7;
+    transition: background-color 0.5s;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Global Link Style */
+a {
+    text-decoration: none;
+    color: var(--secondary);
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: var(--primary);
 }
 
-/* Headings */
-h1, h2, h3, h4 {
-    color: #4CAF50; /* Accent Color: Hijau Gelap */
-    border-bottom: 2px solid #E0E0E0;
-    padding-bottom: 5px;
-    margin-top: 20px;
+/* --- HEADER & NAVIGATION --- */
+.header-wrapper {
+    background: var(--primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Form & Input --- */
-.artikel-form, .filter-search {
-    background-color: #F9F9F9;
-    padding: 20px;
-    border: 1px solid #E0E0E0;
+.header-wrapper .container-content {
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    color: var(--white);
+    font-size: 2.5em;
+    letter-spacing: 0.5px;
+    margin: 0;
+
+}
+
+/* Navigation Links */
+.header-wrapper a {
+    color: var(--white);
+    font-weight: 600;
+    margin-left: 20px;
+    padding: 5px 10px;
     border-radius: 6px;
-    margin-bottom: 20px;
-}
-
-input[type="text"], textarea, select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #BDBDBD;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus, textarea:focus, select:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-textarea {
-    min-height: 150px;
-}
-
-/* Tombol Submit */
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
     transition: background-color 0.3s;
+}
+.header-wrapper a:hover {
+    background: var(--secondary);
+    color: var(--white);
+}
+
+/* --- CONTENT LAYOUT --- */
+.container-content {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 30px 40px;
+    box-sizing: border-box;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.section-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    margin-bottom: 25px;
+    transition: box-shadow 0.3s;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 2em;
+    margin: 0 0 25px 0;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+/* --- FORM & INPUTS --- */
+
+.artikel-form, .filter-search {
+    border: 1px solid #e7e8eb;
+    background: #ffffff;
+}
+
+label {
+    font-weight: 700;
+    display: block;
+    color: var(--text-dark);
+    margin-top: 15px;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+textarea,
+select {
+    font-family: var(--font-body);
+    width: 100%; /* DIPERBAIKI: Agar rata dengan container */
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #e2e6ea;
+    margin: 8px 0 15px 0;
+    font-size: 1em;
+    background: #fcfcfc;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(157, 77, 221, 0.2);
+    background: var(--white);
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background: var(--primary);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(90, 24, 154, 0.3);
+    border: none;
 }
 
 input[type="submit"]:hover {
-    background-color: #388E3C;
+    background: var(--secondary);
+    box-shadow: 0 6px 15px rgba(157, 77, 221, 0.4);
+    transform: translateY(-2px);
 }
 
-/* --- Daftar Artikel (Read List) --- */
-.artikel {
-    padding: 15px 0;
-    border-bottom: 1px dashed #E0E0E0;
+/* Filter & Search Bar Layout */
+.filter-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+}
+
+.filter-search form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.filter-search h3 {
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 600;
+}
+
+/* --- ARTICLE LISTING --- */
+
+.daftar-artikel .artikel {
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #e7e8eb;
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow: var(--shadow-base);
+    transition: all 0.3s ease;
+}
+.daftar-artikel .artikel:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary);
+}
+
+.artikel h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.6em;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+    border: none;
 }
 
 .artikel h3 a {
-    color: #333333;
-    text-decoration: none;
-    transition: color 0.3s;
+    color: var(--text-dark);
 }
-
 .artikel h3 a:hover {
-    color: #4CAF50;
+    color: var(--secondary);
+}
+
+.artikel p {
+    font-size: 0.95em;
+    color: var(--text-soft);
+    margin: 10px 0;
+}
+.artikel p strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.artikel p a {
+    color: var(--secondary);
+    font-weight: 700;
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-/* --- Tampilan Detail Artikel (Read Detail) --- */
+/* --- DETAIL ARTICLE --- */
+
 .artikel-detail {
-    border: 2px solid #4CAF50 !important;
-    padding: 30px;
+    background: #f7f3ff; /* Background lebih lembut */
+    padding: 40px;
+    border-radius: var(--radius);
+    border-left: 8px solid var(--primary); /* Border tebal */
     margin-top: 20px;
-    border-radius: 8px;
-    background-color: #F1F8E9;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-base);
 }
 
-/* Komentar Styling */
-.komentar-form input[type="text"] {
-    width: auto;
-    margin-right: 5px;
+.artikel-detail h2 {
+    font-size: 2.5em;
+    color: var(--primary);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.artikel-detail p[style*="font-style"] {
+    color: var(--text-soft);
+    font-size: 1em;
 }
 
-/* Feedback/Error Messages */
+/* --- COMMENTS --- */
+
+h4 {
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+    margin-top: 30px;
+    font-size: 1.8em;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 5px;
+    font-weight: 700;
+}
+
+.komentar-form {
+    background: #fcfdff;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid #e7e8eb;
+}
+
+div[style*="border-left"] { 
+    border-left: 5px solid var(--secondary) !important;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #ffffff !important;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- ALERTS --- */
 .error {
-    color: #D32F2F; 
-    font-weight: bold;
-    background-color: #FFEBEE;
-    padding: 5px;
-    border-radius: 3px;
-    margin-top: 10px;
-}
-p[style*="green"] {
-    color: #388E3C !important;
-    font-weight: bold;
+    background: #ffebe6;
+    border-left: 6px solid #e76f51;
+    color: #c0392b;
 }
 
-
-/* ==================================== */
-/* MEDIA QUERIES (RESPONSIVE) */
-/* ==================================== */
-@media (max-width: 768px) {
-    body { padding: 10px; }
-    .container { padding: 15px; box-shadow: none; }
-    .filter-search form { display: flex; flex-direction: column; }
-    .filter-search label { margin-top: 10px; margin-left: 0 !important; }
-    .filter-search input[type="text"],
-    .filter-search select { width: 100%; margin-bottom: 10px; }
-    .filter-search input[type="submit"],
-    .filter-search a { display: block; width: 100%; text-align: center; margin-top: 5px; box-sizing: border-box; }
-    .komentar-form form { display: flex; flex-direction: column; }
-    .komentar-form input[type="text"] { width: 100%; margin-right: 0; margin-bottom: 5px; }
-    .artikel-detail { padding: 15px; }
-    h1 { font-size: 1.8em; }
+.success {
+    background: #e6f7ff;
+    border-left: 6px solid #5d5c61;
+    color: #5d5c61;
 }
-@media (min-width: 769px) and (max-width: 1024px) {
-    .container {
-        max-width: 95%;
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+/* ... [Kode CSS di atas tetap sama, tidak perlu diulang] ... */
+
+/* --- RESPONSIVE ADJUSTMENTS (Optimized) --- */
+
+/* Default Responsive Behavior for Tablets and Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+    .main-layout {
+        /* Pindah dari layout 2 kolom (2fr 1fr) menjadi 1 kolom penuh */
+        grid-template-columns: 1fr;
+        gap: 30px; 
     }
+    .header-wrapper .container-content {
+        /* Header menjadi tumpuk ke bawah */
+        flex-direction: column;
+        padding: 15px 30px;
+    }
+    h1 { margin-bottom: 10px; }
+}
+
+/* New Breakpoint for Medium Tablets / Larger Phones (<= 992px) */
+@media (max-width: 992px) {
+    .container-content {
+        /* Padding horizontal sedikit dikurangi */
+        padding: 25px 30px;
+    }
+    .filter-search {
+        /* Filter/Search bar menjadi tumpuk ke bawah */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-search form {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+    .filter-search input[type="text"], 
+    .filter-search select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    /* Biarkan radio-group-category tetap menggunakan flex/wrap */
+}
+
+/* New Breakpoint for Smaller Tablets / Phablets (<= 678px) */
+@media (max-width: 678px) {
+    .container-content {
+        padding: 20px 20px;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .artikel-detail {
+        padding: 30px 20px;
+    }
+    
+    /* Mengurangi jarak gap pada form */
+    .filter-search form {
+        gap: 10px;
+    }
+    
+    /* Mengurangi ukuran font dasar */
+    body {
+        font-size: 0.95em;
+    }
+}
+
+/* New Breakpoint for Mobile Phones (<= 480px) */
+@media (max-width: 480px) {
+    .container-content {
+        padding: 15px 10px;
+    }
+    h1 { 
+        font-size: 2em; 
+    }
+    h2 { 
+        font-size: 1.6em; 
+    }
+    .section-card {
+        padding: 20px 15px;
+    }
+    
+    /* Tombol dan input form menjadi lebih ramping */
+    input[type="submit"] {
+        padding: 12px 20px;
+        font-size: 1em;
+        width: 100%; /* Tombol submit full width di HP */
+    }
+    
+    /* Kategori radio button tumpuk vertikal di layar sangat kecil */
+   
+
+
+/* Perbaikan Kerapian Radio Button Kategori di default style (luar media query) */
+.radio-group-category {
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 10px 0 20px 0;
+}
+
+.radio-group-category input[type="radio"] {
+    margin-right: 5px; 
+}
+
+.radio-group-category label {
+    display: inline-block; 
+    margin-top: 0;
+    font-weight: normal !important; 
+    cursor: pointer;
+    user-select: none;
+}
+
 }
