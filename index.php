@@ -19,16 +19,12 @@
     <div class="container-content"> 
 
         <?php
-        // --- LOGIKA UTAMA PHP UNTUK MEMBACA DATA ARTIKEL ---
-        // (Logika PHP di sini tetap sama seperti kode asli Anda)
         $file_artikel = 'artikel.txt';
         $data_artikel = file_exists($file_artikel) ? file_get_contents($file_artikel) : '';
         $artikel_array = array_filter(explode("---BATAS-ARTIKEL---\n", $data_artikel));
-        $artikel_array_reverse = array_reverse($artikel_array); // Artikel terbaru di awal
+        $artikel_array_reverse = array_reverse($artikel_array); 
 
-        // Cek apakah user ingin melihat artikel lengkap (READ DETAIL)
         if (isset($_GET['id'])) {
-            // (Tampilan detail artikel di sini tetap sama)
             $id_artikel = $_GET['id'];
             $index_target = (int)str_replace('artikel_', '', $id_artikel);
             $target_data = isset($artikel_array_reverse[$index_target]) ? $artikel_array_reverse[$index_target] : null;
@@ -36,20 +32,16 @@
             if ($target_data) {
                 list($judul, $penulis, $kategori, $isi) = explode("|", $target_data);
                 
-                // --- TAMPILAN ARTIKEL LENGKAP ---
                 echo '<a href="index.php" style="font-weight: 600; display: inline-block; margin-bottom: 20px;">&laquo; Kembali ke Daftar Artikel</a>';
                 echo '<div class="artikel-detail">';
-                // Komponen Wajib 3: Manipulasi String (strtoupper untuk Judul)
                 echo '<h2>' . strtoupper(htmlspecialchars(trim($judul))) . '</h2>'; 
                 echo '<p style="font-style: italic; color: var(--soft-text); font-size: 0.9em;">Oleh: ' . htmlspecialchars(trim($penulis)) . ' | Kategori: ' . htmlspecialchars(trim($kategori)) . '</p>';
                 echo '<hr style="border: none; border-top: 1px solid #dcdfe6; margin: 15px 0;">';
                 echo '<div style="line-height: 1.8; color: var(--text);">' . nl2br(htmlspecialchars(trim($isi))) . '</div>'; 
                 echo '</div>';
                 
-                // --- BAGIAN KOMENTAR ---
                 echo '<h4>Komentar Artikel Ini:</h4>';
                 
-                // (Logika menampilkan komentar tetap sama)
                 $file_komentar = 'komentar.txt';
                 if (file_exists($file_komentar)) {
                     $komentar_data = file_get_contents($file_komentar);
@@ -62,7 +54,6 @@
                         if (trim($komen_id) == $id_artikel && !empty($komen_nama)) {
                             $komentar_ditemukan = true;
                             echo '<div style="border-left: 3px solid #007bff; padding-left: 10px; margin-bottom: 5px; background: #f8f9fa;">';
-                            // Komponen Wajib 3: Manipulasi String (ucwords, strtolower)
                             echo '<strong>' . ucwords(strtolower(trim($komen_nama))) . ':</strong> '; 
                             echo htmlspecialchars(trim($komen_isi));
                             echo '</div>';
@@ -72,8 +63,7 @@
                         echo '<p style="color: var(--soft-text);">Belum ada komentar untuk artikel ini.</p>';
                     }
                 }
-                
-                // Form Komentar (Component 1: Form Input HTML)
+
                 echo '<h4>Tulis Komentar</h4>';
                 echo '<form action="proses_komentar.php" method="POST" class="komentar-form">';
                 echo '<input type="hidden" name="artikel_id" value="' . $id_artikel . '">';
@@ -88,7 +78,6 @@
             }
 
         } else {
-            // --- Logika TAMPILAN DAFTAR ARTIKEL, FILTER, DAN FORM INPUT (DEFAULT) ---
         ?>
 
         <?php
@@ -138,12 +127,10 @@
                         if (!empty($judul)) {
                             $tampil = true;
                             
-                            // Logika Filtering & Pencarian (SINKRON)
                             if (!empty($filter_kategori) && trim($kategori) != $filter_kategori) {
                                 $tampil = false;
                             }
                             if ($tampil && !empty($kata_kunci)) {
-                                // Component 3: Manipulasi String (stripos) untuk Pencarian Case-Insensitive
                                 if (stripos($judul, $kata_kunci) === false && stripos($isi, $kata_kunci) === false) {
                                     $tampil = false;
                                 }
@@ -157,7 +144,6 @@
                                 echo '<h3><a href="index.php?id=' . $artikel_id . '">' . htmlspecialchars(trim($judul)) . '</a></h3>'; 
                                 echo '<p><strong>Penulis:</strong> ' . htmlspecialchars(trim($penulis)) . ' | <strong>Kategori:</strong> ' . htmlspecialchars(trim($kategori)) . '</p>';
                                 
-                                // Component 3: Manipulasi String (substr) untuk ringkasan
                                 $isi_pendek = substr(trim($isi), 0, 200);
                                 echo '<p>' . nl2br(htmlspecialchars($isi_pendek)) . '... <a href="index.php?id=' . $artikel_id . '">[Baca Selengkapnya]</a></p>'; 
                                 echo '</div>';
